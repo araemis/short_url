@@ -42,7 +42,7 @@ public class LinkController {
         Link link = linkService.getLink(url);
         if (!link.getPassword()
                  .equals(PassEncTech1.encrypt(password))) {
-            modelAndView = new ModelAndView("redirect:/"+url);
+            modelAndView = new ModelAndView("redirect:/" + url);
             modelAndView.addObject("error", "invalid password");
             return modelAndView;
         }

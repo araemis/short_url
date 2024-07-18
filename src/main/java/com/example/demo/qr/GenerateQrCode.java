@@ -21,7 +21,7 @@ public class GenerateQrCode {
     public static String generateQrcode(String qrText) {
         QrCode qrCode = QrCode.encodeText(qrText, QrCode.Ecc.MEDIUM);
         BufferedImage img = toImage(qrCode, 4, 10);
-        String qrResult = "";
+        String qrResult;
 
         try {
             qrResult = convertToImage(img);

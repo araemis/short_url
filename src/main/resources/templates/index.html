@@ -24,7 +24,7 @@
         hx-post="/save"
         hx-target="#updateNewLink"
         hx-vals='js:{ "qrBox": document.getElementById("qrBox").checked,
-        "password": document.getElementById("inputPassword").value }'
+        "password": document.getElementById("inputPassword").value}'
         class="input-field"
       >
         <input
@@ -38,21 +38,23 @@
         <button>Shorten URL</button>
         <br />
       </form>
-
-      <label>
-        <input type="checkbox" id="qrBox" />
-        <span>qr code</span>
-      </label>
-
-      <label>
-        <input
-          hx-on:click="toggleHide('inputPassword')"
-          type="checkbox"
-          id="passwordBox"
-        />
-        <span>password</span>
-        <input type="text" name="inputPassword" id="inputPassword" hidden />
-      </label>
+      <div class="foo">
+        <label>
+          <input type="checkbox" id="qrBox" />
+          <span>qr code</span>
+        </label>
+        <br />
+        <label>
+          <input
+            hx-on:click="toggleHide('inputPassword')"
+            type="checkbox"
+            id="passwordBox"
+          />
+          <span>password</span>
+          <br />
+          <input type="text" name="inputPassword" id="inputPassword" hidden />
+        </label>
+      </div>
 
       <div id="updateNewLink" hx-swap-oob="true">
         <div th:if="${link != null}">

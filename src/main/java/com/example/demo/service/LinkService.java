@@ -52,13 +52,11 @@ public class LinkService {
         linkRepository.deleteByTimeDeleteBefore(now);
     }
 
-
     private String checkUrlHttp(String url) {
         if (url.startsWith("https://") || url.startsWith("http://")) {
             return url;
         }
         url = "https://" + url;
-
         return url;
     }
 
