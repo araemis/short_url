@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <script
+      src="https://unpkg.com/htmx.org@2.0.1"
+      integrity="sha384-QWGpdj554B4ETpJJC9z+ZHJcA/i59TyjxEPXiiUgN2WmTyV5OEZWCD6gQhgkdpB/"
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>URL Shortener Password</h1>
+      <form
+        th:action="|/checkPassword/${url}|"
+        method="get"
+        class="input-field"
+      >
+        <!-- type="password" -->
+        <div th:if="${error!=null}" th:text="${error}"></div>
+        <input
+          required
+          type="text"
+          id="password"
+          name="password"
+          placeholder="Enter Password"
+          size="50"
+        />
+        <button>Go Password</button>
+
+        <br />
+      </form>
+    </div>
+  </body>
+  <script>
+    const qrBox = document.querySelector("#qrBox");
+  </script>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:hx-on="http://www.w3.org/1999/xhtml"
+>
+  <head>
+    <script src="/js/index.js"></script>
+    <script
+      src="https://unpkg.com/htmx.org@2.0.1"
+      integrity="sha384-QWGpdj554B4ETpJJC9z+ZHJcA/i59TyjxEPXiiUgN2WmTyV5OEZWCD6gQhgkdpB/"
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>URL Shortener</h1>
+      <form
+        hx-post="/save"
+        hx-target="#updateNewLink"
+        hx-vals='js:{ "qrBox": document.getElementById("qrBox").checked,
+        "password": document.getElementById("inputPassword").value }'
+        class="input-field"
+      >
+        <input
+          required
+          type="text"
+          id="urlInput"
+          name="urlInput"
+          placeholder="Enter URL"
+          size="50"
+        />
+        <button>Shorten URL</button>
+        <br />
+      </form>
+
+      <label>
+        <input type="checkbox" id="qrBox" />
+        <span>qr code</span>
+      </label>
+
+      <label>
+        <input
+          hx-on:click="toggleHide('inputPassword')"
+          type="checkbox"
+          id="passwordBox"
+        />
+        <span>password</span>
+        <input type="text" name="inputPassword" id="inputPassword" hidden />
+      </label>
+
+      <div id="updateNewLink" hx-swap-oob="true">
+        <div th:if="${link != null}">
+          <span>target url:</span>
+          <a
+            th:href="${link.bigUrl}"
+            target="_blank"
+            th:text="${link.bigUrl}"
+          ></a>
+
+          <br />
+
+          <span>short url:</span>
+          <a
+            th:href="|${local_url}${link.url}|"
+            target="_blank"
+            th:text="|${local_url}${link.url}|"
+          ></a>
+
+          <br />
+          <img th:if="${qrCode != null}" th:src="${qrCode}" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
